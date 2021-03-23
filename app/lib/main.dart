@@ -8,29 +8,31 @@ void main() {
 }
 
 const String title = 'Projects by Ilia Grigorev';
-const String origin = 'https://github.com/iliagrigorevdev';
+const String repositoryOrigin = 'https://github.com/iliagrigorevdev';
+const String pageOrigin = 'https://iliagrigorevdev.github.io';
 const double screenshotWidth = 1280;
 const double screenshotHeight = 640;
 
 class Project {
   final int id;
   final String name;
-  final String repository;
+  final String title;
 
-  String get repositoryUrl => '$origin/$repository';
+  String get repositoryUrl => '$repositoryOrigin/$name';
+  String get pageUrl => '$pageOrigin/$name';
   String get screenshot => 'images/screenshot$id.jpg';
 
-  const Project(this.id, this.name, this.repository);
+  const Project(this.id, this.name, this.title);
 }
 
 const List<Project> projects = [
-  Project(1, 'Quoridor', 'quoridor-web'),
-  Project(2, 'Twisty Editor', 'twistyeditor'),
-  Project(3, 'Bowling', 'bowling'),
-  Project(4, 'Tangram', 'tangram'),
-  Project(5, 'AI Snake', 'ai-snake'),
-  Project(6, 'Voxel Challenge', 'voxelchallenge'),
-  Project(7, 'Townlets', 'townlets'),
+  Project(1, 'quoridor-web', 'Quoridor'),
+  Project(2, 'twistyeditor', 'Twisty Editor'),
+  Project(3, 'bowling', 'Bowling'),
+  Project(4, 'tangram', 'Tangram'),
+  Project(5, 'ai-snake', 'AI Snake'),
+  Project(6, 'voxelchallenge', 'Voxel Challenge'),
+  Project(7, 'townlets', 'Townlets'),
 ];
 
 class App extends StatelessWidget {
@@ -66,39 +68,67 @@ class HomePage extends StatelessWidget {
           items: projects.map((project) {
             return Builder(
               builder: (BuildContext context) {
-                return InkWell(
-                  onTap: () => html.window.open(project.repositoryUrl, project.name),
-                  child: Container(
-                    margin: EdgeInsets.all(5.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      child: Stack(
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage(project.screenshot),
-                            width: screenshotWidth,
-                            height: screenshotHeight,
-                            fit: BoxFit.cover
-                          ),
-                          Positioned(
-                            bottom: 0.0,
-                            left: 0.0,
-                            right: 0.0,
-                            child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                              child: Text(
-                                project.name,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold
+                return Container(
+                  margin: EdgeInsets.all(5.0),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          child: Stack(
+                            children: <Widget>[
+                              Image(
+                                image: AssetImage(project.screenshot),
+                                width: screenshotWidth,
+                                height: screenshotHeight,
+                                fit: BoxFit.cover
+                              ),
+                              Positioned(
+                                bottom: 0.0,
+                                left: 0.0,
+                                right: 0.0,
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                                  child: Text(
+                                    project.title,
+                                    style: TextStyle(
+                                      color: Colors.grey[800],
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold
+                                    )
+                                  )
                                 )
                               )
-                            )
+                            ]
                           )
-                        ]
-                      )
-                    )
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 100,
+                              child: ElevatedButton(
+                                onPressed: () => html.window.open(project.repositoryUrl, project.title),
+                                child: Text('Open'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            SizedBox(
+                              width: 100,
+                              child: ElevatedButton(
+                                onPressed: () => html.window.open(project.pageUrl, project.title),
+                                child: Text('Run'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 );
               }
