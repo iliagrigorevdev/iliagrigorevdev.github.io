@@ -7,7 +7,6 @@ void main() {
   runApp(App());
 }
 
-const String title = 'Projects by Ilia Grigorev';
 const String repositoryOrigin = 'https://github.com/iliagrigorevdev';
 const String pageOrigin = 'https://iliagrigorevdev.github.io';
 const double screenshotWidth = 1280;
@@ -40,9 +39,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: title,
+      title: 'Projects by Ilia Grigorev',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.grey[700],
+        primarySwatch: Colors.orange,
       ),
       home: HomePage(),
     );
@@ -55,87 +55,112 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: CarouselSlider(
-          options: CarouselOptions(
-            autoPlay: true,
-            //aspectRatio: screenshotWidth / screenshotHeight,
-            height: screenshotHeight,
-            enlargeCenterPage: true,
+      body: Column(
+        children: [
+          SizedBox(
+            height: 150,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'Projects',
+                  style: TextStyle(
+                    color: Colors.orange,
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.bold
+                  )
+                ),
+                Text(
+                  'by Ilia Grigorev',
+                  style: TextStyle(
+                    color: Colors.orange,
+                    fontSize: 20.0
+                  )
+                ),
+              ],
+            ),
           ),
-          items: projects.map((project) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Container(
-                  margin: EdgeInsets.all(5.0),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          child: Stack(
-                            children: <Widget>[
-                              Image(
-                                image: AssetImage(project.screenshot),
-                                width: screenshotWidth,
-                                height: screenshotHeight,
-                                fit: BoxFit.cover
-                              ),
-                              Positioned(
-                                bottom: 0.0,
-                                left: 0.0,
-                                right: 0.0,
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                                  child: Text(
-                                    project.title,
-                                    style: TextStyle(
-                                      color: Colors.grey[800],
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold
+          Expanded(
+            child: CarouselSlider(
+              options: CarouselOptions(
+                autoPlay: true,
+                //aspectRatio: screenshotWidth / screenshotHeight,
+                height: screenshotHeight,
+                enlargeCenterPage: true,
+              ),
+              items: projects.map((project) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      margin: EdgeInsets.all(5.0),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              child: Stack(
+                                children: <Widget>[
+                                  Image(
+                                    image: AssetImage(project.screenshot),
+                                    width: screenshotWidth,
+                                    height: screenshotHeight,
+                                    fit: BoxFit.cover
+                                  ),
+                                  Positioned(
+                                    bottom: 0.0,
+                                    left: 0.0,
+                                    right: 0.0,
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                                      child: Text(
+                                        project.title,
+                                        style: TextStyle(
+                                          color: Colors.grey[800],
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold
+                                        )
+                                      )
                                     )
                                   )
-                                )
+                                ]
                               )
-                            ]
-                          )
-                        ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 100,
+                                  child: ElevatedButton(
+                                    onPressed: () => html.window.open(project.repositoryUrl, project.title),
+                                    child: Text('Open'),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                SizedBox(
+                                  width: 100,
+                                  child: ElevatedButton(
+                                    onPressed: () => html.window.open(project.pageUrl, project.title),
+                                    child: Text('Run'),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 100,
-                              child: ElevatedButton(
-                                onPressed: () => html.window.open(project.repositoryUrl, project.title),
-                                child: Text('Open'),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            SizedBox(
-                              width: 100,
-                              child: ElevatedButton(
-                                onPressed: () => html.window.open(project.pageUrl, project.title),
-                                child: Text('Run'),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    );
+                  }
                 );
-              }
-            );
-          }).toList()
-        ),
+              }).toList(),
+            ),
+          ),
+        ],
       ),
     );
   }
