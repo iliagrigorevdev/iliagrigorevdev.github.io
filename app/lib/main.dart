@@ -33,6 +33,7 @@ const List<Project> projects = [
   Project(5, 'ai-snake', 'AI Snake'),
   Project(6, 'voxelchallenge', 'Voxel Challenge'),
   Project(7, 'townlets', 'Townlets'),
+  Project(8, 'twistylander', 'Twisty Lander'),
 ];
 
 class App extends StatelessWidget {
@@ -41,7 +42,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: title,
       theme: ThemeData(
-        primarySwatch: Colors.blue
+        primarySwatch: Colors.blue,
       ),
       home: HomePage(),
     );
