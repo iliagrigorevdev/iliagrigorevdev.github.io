@@ -25,6 +25,8 @@ class Project {
 }
 
 const List<Project> projects = [
+  Project(10, 'bowlingonline2', 'Bowling Online 2'),
+  Project(9, 'magicsnake', 'Magic Snake'),
   Project(1, 'quoridor-web', 'Quoridor'),
   Project(2, 'twistyeditor', 'Twisty Editor'),
   Project(3, 'bowling', 'Bowling'),
