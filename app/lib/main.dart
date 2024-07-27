@@ -16,25 +16,26 @@ class Project {
   final int id;
   final String name;
   final String title;
+  final int textShade;
 
   String get repositoryUrl => '$repositoryOrigin/$name';
   String get pageUrl => '$pageOrigin/$name';
   String get screenshot => 'images/screenshot$id.jpg';
 
-  const Project(this.id, this.name, this.title);
+  const Project(this.id, this.name, this.title, this.textShade);
 }
 
 const List<Project> projects = [
-  Project(10, 'bowlingonline2', 'Bowling Online 2'),
-  Project(9, 'magicsnake', 'Magic Snake'),
-  Project(1, 'quoridor-web', 'Quoridor'),
-  Project(2, 'twistyeditor', 'Twisty Editor'),
-  Project(3, 'bowling', 'Bowling'),
-  Project(4, 'tangram', 'Tangram'),
-  Project(5, 'ai-snake', 'AI Snake'),
-  Project(6, 'voxelchallenge', 'Voxel Challenge'),
-  Project(7, 'townlets', 'Townlets'),
-  Project(8, 'twistylander', 'Twisty Lander'),
+  Project(10, 'bowlingonline2', 'Bowling Online 2', 300),
+  Project(9, 'magicsnake', 'Magic Snake', 800),
+  Project(1, 'quoridor-web', 'Quoridor', 800),
+  Project(2, 'twistyeditor', 'Twisty Editor', 800),
+  Project(3, 'bowling', 'Bowling', 800),
+  Project(4, 'tangram', 'Tangram', 800),
+  Project(5, 'ai-snake', 'AI Snake', 800),
+  Project(6, 'voxelchallenge', 'Voxel Challenge', 800),
+  Project(7, 'townlets', 'Townlets', 800),
+  Project(8, 'twistylander', 'Twisty Lander', 800),
 ];
 
 class App extends StatelessWidget {
@@ -118,7 +119,7 @@ class HomePage extends StatelessWidget {
                                       child: Text(
                                         project.title,
                                         style: TextStyle(
-                                          color: Colors.grey[800],
+                                          color: Colors.grey[project.textShade],
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.bold
                                         )
