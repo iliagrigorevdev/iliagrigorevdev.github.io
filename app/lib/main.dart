@@ -30,6 +30,7 @@ const List<Project> projects = [
   Project(9, 'magicsnake', 'Magic Snake', 800),
   Project(1, 'quoridor-web', 'Quoridor', 800),
   Project(2, 'twistyeditor', 'Twisty Editor', 800),
+  Project(11, 'sdf-heart', 'SDF Heart', 800),
   Project(3, 'bowling', 'Bowling', 800),
   Project(4, 'tangram', 'Tangram', 800),
   Project(5, 'ai-snake', 'AI Snake', 800),
