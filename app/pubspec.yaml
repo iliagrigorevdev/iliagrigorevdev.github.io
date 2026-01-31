@@ -61,6 +61,7 @@ flutter:
     - images/screenshot11.jpg
     - images/screenshot12.jpg
     - images/screenshot13.jpg
+    - images/screenshot14.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
