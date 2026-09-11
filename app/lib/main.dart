@@ -26,7 +26,7 @@ class Project {
 }
 
 const List<Project> projects = [
-  Project(15, 'scad-gltf', 'Scadify', 800),
+  Project(15, 'scad-gltf', 'Scadify', 300),
   Project(14, 'rhythmpiano-web', 'Rhythm Piano', 800),
   Project(13, 'sdf-cubic-snake-web', 'Cubaconda', 300),
   Project(12, 'solar-sim', 'Solar System Simulation', 300),
